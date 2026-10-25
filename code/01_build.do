@@ -40,7 +40,7 @@ set linesize 100
 * 0. PATHS
 *
 *  Run this file from the repository root, e.g.
-*      cd "/path/to/two-ways-to-get-a-zero"
+*      cd "/path/to/project-01"
 *      do code/01_build.do
 *
 *  RAW is where you placed the two FINRA .dta files (see data/README.md).

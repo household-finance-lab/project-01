@@ -17,7 +17,7 @@ set linesize 100
 * 0. PATHS
 *
 *  Run from the repository root, after 01_build.do:
-*      cd "/path/to/two-ways-to-get-a-zero"
+*      cd "/path/to/project-01"
 *      do code/02_analyze.do
 *------------------------------------------------------------------------------*
 global REPO "`c(pwd)'"
