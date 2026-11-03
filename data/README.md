@@ -83,7 +83,7 @@ To confirm you have the same source files we used, compare checksums:
 shasum -a 256 "NFCS 2024 Investor.dta" "NFCS 2024 State.dta"
 ```
 
-<!-- TODO: paste the two SHA-256 values here before publishing -->
+Reference checksums for the two source files are not yet recorded here. Until they are, the validation gate above is the check: if it passes, your source files reproduce our build.
 
 ## Reading the exported CSV in Python — important
 
