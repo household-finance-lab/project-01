@@ -75,15 +75,22 @@ The build stops on its own if the reconstruction drifts. Expected values are ass
 - Analytic sample: **2,797**
 - G43 weighted distribution: **49.6% Yes / 20.6% No / 29.6% Don't know**
 
-If the gate passes, your build matches ours.
+If the gate passes, your build matches the documented validation targets. The
+checks do not establish that your source files are byte-for-byte identical to
+the files used in the original analysis.
 
-To confirm you have the same source files we used, compare checksums:
+The SHA-256 values for the exact source files used in the original analysis were
+not preserved. As a result, this repository cannot certify that a downloaded
+file is byte-for-byte identical to the authors' copy. You can still record the
+fingerprints of your own files for reproducibility:
 
 ```bash
 shasum -a 256 "NFCS 2024 Investor.dta" "NFCS 2024 State.dta"
 ```
 
-<!-- TODO: paste the two SHA-256 values here before publishing -->
+On Linux, use `sha256sum` with the same filenames. Include these locally
+calculated values when reporting a reproduction; they identify your copies but
+are not reference hashes supplied by the authors or FINRA.
 
 ## Reading the exported CSV in Python — important
 

@@ -98,7 +98,7 @@ See [`docs/workflow.md`](docs/workflow.md) for the full workflow notes.
 
 ## Instructions to replicators
 
-**Software.** Stata 16 or later (for `svy:` estimation and `margins`). Python 3.10+ with `pandas`, `numpy`, `scipy`, and `scikit-learn` — see `code/requirements.txt`.
+**Software.** Stata 19.0 or later (`01_build.do` and `02_analyze.do` declare `version 19.0`). Python 3.10+ with `pandas`, `numpy`, `scipy`, and `scikit-learn` — see `code/requirements.txt`.
 
 **Data.** Not included in this repository. Download the 2024 NFCS Investor Survey and State-by-State Survey from the [FINRA Investor Education Foundation](https://www.finrafoundation.org/nfcs-data-and-downloads), free and without registration, and place the `.dta` files in `data/`. Full instructions in [`data/README.md`](data/README.md).
 
