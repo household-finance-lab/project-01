@@ -1,7 +1,7 @@
 # Reproduction status
 
 **Verified 25 August 2026.** This run covers the Python layer: every Python
-script was rerun from the analytic CSV that `01_build.do` exports, and every
+script then in the repository was rerun from the analytic CSV that `01_build.do` exports, and every
 committed Python result table is now the direct output of the committed code.
 The Stata build and analysis were not independently rerun as part of this
 verification; the Stata primary estimate is matched by the Python

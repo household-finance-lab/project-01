@@ -48,8 +48,11 @@ J = names.index('n_dk')
 K, YES = 3, 2
 
 fit = fit_wmnl(X, y, w, [0, 1, 2])
-assert fit['converged'], "model did not converge"
 b, V, p = fit['b'], fit['V'], fit['p']
+# BFGS with gtol=1e-10 often reports precision loss rather than success (as in
+# 05_nonquiz_dk_sensitivity.py). The real check: the primary AME must reproduce
+# Stata's published -0.0467.
+assert abs(ame(fit, J, YES)[0] - (-0.0467)) < 5e-5, "primary AME does not reproduce Stata's -0.0467"
 
 
 def probs(bvec, Xm):

@@ -4,7 +4,7 @@
 
 Wrong answer: zero. Don't know: zero. Same score — but are they telling us the same thing?
 
-Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return (95% CI: 3.4 to 5.9; 2,796 respondents).
+Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return (95% CI: 3.4 to 5.9; 2,796 respondents). Estimated directly as a one-answer swap among respondents with at least one wrong answer, the figure is the same: 4.7 points (95% CI: 3.4 to 6.0).
 
 **What it does not show:** why respondents select "don't know," that "don't know" is inherently beneficial, or that changing how people answer would improve their judgment. Nobody was assigned to say "I don't know."
 
@@ -132,6 +132,7 @@ do code/02_analyze.do                        # descriptives, item audit, models,
 python code/03_nested_prediction.py          # nested out-of-sample comparison
 python code/04_symmetric_comparison.py       # symmetric response-composition diagnostic
 python code/05_nonquiz_dk_sensitivity.py     # measurement sensitivity of the auxiliary control
+python code/06_discrete_substitution.py      # literal one-answer swap vs. the average derivative
 ```
 
 **Runtime.** The Stata scripts run in under two minutes. The Python scripts take roughly five, most of it in repeated cross-validation.
