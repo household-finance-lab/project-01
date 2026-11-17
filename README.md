@@ -4,13 +4,35 @@
 
 Wrong answer: zero. Don't know: zero. Same score — but are they telling us the same thing?
 
-Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return.
+Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return (95% CI: 3.4 to 5.9; 2,796 respondents).
 
-📖 **[Read the full write-up →](docs/empirically-yours-01-two-ways-to-get-a-zero.md)** *(Empirically Yours №1 — the story, in plain language)*
+**What it does not show:** why respondents select "don't know," that "don't know" is inherently beneficial, or that changing how people answer would improve their judgment. Nobody was assigned to say "I don't know."
 
-> **Research status:** exploratory analysis of observational data. **Not peer reviewed.** The expectation was formalized after a related result was already known, and this is documented rather than obscured. See `ANALYTICAL-DECISIONS.md`.
+📖 [**Read the story**](docs/empirically-yours-01-two-ways-to-get-a-zero.md) (Empirically Yours №1) · 🔁 [**Reproduce it**](#reproduce-it) · 📎 [**Cite it**](CITATION.cff)
+
+> **Research status:** exploratory analysis of observational data. **Not peer reviewed.** The expectation was formalized after a related result was already known, and this is documented rather than obscured. See [`ANALYTICAL-DECISIONS.md`](ANALYTICAL-DECISIONS.md).
 
 ---
+
+## Methodological lesson
+
+**Check what a score throws away.** A knowledge score counts correct answers, so a wrong answer and a "don't know" both count as zero. Here they were not interchangeable: they were associated with different judgments, and out of sample the wrong-answer count alone captured nearly all the predictive information in the full correct/don't-know composition. Before collapsing response categories into one score, check whether the categories carry different information.
+
+## What this study supports
+
+Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with a "don't know" is associated with a lower probability of accepting the implausible proposition. The association remained across the inferential specifications examined and across every defensible construction of the auxiliary non-quiz DK control.
+
+The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured nearly all the discrimination available from the full correct/DK response composition. For this judgment, conventional scoring therefore discards information when it gives a wrong answer and "don't know" the same zero.
+
+## What changed along the way
+
+Three interpretations were revised during this project, and all three are documented rather than quietly dropped:
+
+- a nested-model result that turned out to depend on the order variables were entered;
+- a coefficient read as though it were a marginal effect;
+- an auxiliary index whose item list was anchored on an earlier version rather than derived from a stated rule.
+
+The third prompted a full measurement audit. The central result survived it.
 
 ## What's here
 
@@ -96,43 +118,30 @@ The sample moves from 2,861 Investor Survey respondents to 2,797 after the stric
 
 See [`docs/workflow.md`](docs/workflow.md) for the full workflow notes.
 
-## Instructions to replicators
+## Reproduce it
 
-**Software.** Stata 19.0 or later (`01_build.do` and `02_analyze.do` declare `version 19.0`). Python 3.10+ with `pandas`, `numpy`, `scipy`, and `scikit-learn` — see `code/requirements.txt`.
+**Software.** Stata 19.0 or later (`01_build.do` and `02_analyze.do` declare `version 19.0`). Python 3.10+: `pip install -r code/requirements.txt`.
 
 **Data.** Not included in this repository. Download the 2024 NFCS Investor Survey and State-by-State Survey from the [FINRA Investor Education Foundation](https://www.finrafoundation.org/nfcs-data-and-downloads), free and without registration, and place the `.dta` files in `data/`. Full instructions in [`data/README.md`](data/README.md).
 
-**Run order.**
+**Run order,** from the repository folder:
 
 ```
-code/01_build.do                      # merge, construct, validate, freeze
-code/02_analyze.do                    # descriptives, item audit, models, robustness
-code/03_nested_prediction.py          # nested out-of-sample comparison
-code/04_symmetric_comparison.py       # symmetric response-composition diagnostic
-code/05_nonquiz_dk_sensitivity.py     # measurement sensitivity of the auxiliary control
+do code/01_build.do                          # merge, construct, validate, freeze
+do code/02_analyze.do                        # descriptives, item audit, models, robustness
+python code/03_nested_prediction.py          # nested out-of-sample comparison
+python code/04_symmetric_comparison.py       # symmetric response-composition diagnostic
+python code/05_nonquiz_dk_sensitivity.py     # measurement sensitivity of the auxiliary control
 ```
 
 **Runtime.** The Stata scripts run in under two minutes. The Python scripts take roughly five, most of it in repeated cross-validation.
 
-**How you know it worked.** `01_build.do` asserts its expected values in code and halts if the reconstruction drifts. A successful build reports a weighted mean correct of 5.33 against FINRA's published 5.3, male and female incorrect counts of 3.31 and 3.33 (both rounding to the published 3.3), 64 respondents with quiz refusals, and an analytic sample of 2,797. If the gate prints `VALIDATION GATE PASSED`, your build matches ours.
+**How you know it worked.** `01_build.do` asserts its expected values in code and halts if the reconstruction drifts. A successful build reports a weighted mean correct of 5.33 against FINRA's published 5.3, male and female incorrect counts of 3.31 and 3.33 (both rounding to the published 3.3), 64 respondents with quiz refusals, and an analytic sample of 2,797. If the gate prints `VALIDATION GATE PASSED`, your build matches ours. The full verification run is recorded in [`docs/REPRODUCTION-STATUS.md`](docs/REPRODUCTION-STATUS.md).
 
-## What this study supports
+## Authors
 
-Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with a "don't know" is associated with a lower probability of accepting the implausible proposition. The association remained across the inferential specifications examined and across every defensible construction of the auxiliary non-quiz DK control.
-
-The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured nearly all the discrimination available from the full correct/DK response composition. For this judgment, conventional scoring therefore discards information when it gives a wrong answer and "don't know" the same zero.
-
-It does **not** establish why respondents select DK, that DK is inherently beneficial, or that changing DK behavior would improve judgment. Nobody was assigned to say "I don't know."
-
-## Things we got wrong
-
-Three interpretations were revised during this project, and all three are documented rather than quietly dropped:
-
-- a nested-model result that turned out to depend on the order variables were entered;
-- a coefficient read as though it were a marginal effect;
-- an auxiliary index whose item list was anchored on an earlier version rather than derived from a stated rule.
-
-The third prompted a full measurement audit. The central result survived it.
+- **Lena Gan, PhD, CFP®, CIMA®**
+- **Sara Kay** ([sarakay.me](https://sarakay.me))
 
 ## Tell us we're wrong
 
