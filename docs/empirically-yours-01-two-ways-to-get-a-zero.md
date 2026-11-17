@@ -62,7 +62,7 @@ Right answers and don't-knows move together — knowing one tells you a lot abou
 
 My favorite sentence was a fact about the order we typed things in.
 
-So we stopped asking which variable added more when it went second, and Sara built a comparison that gave each one the same chance.
+So we stopped asking which variable added more when it went second, and built a comparison that gave each one the same chance.
 
 Wrong answers won.
 
