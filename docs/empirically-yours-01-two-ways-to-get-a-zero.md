@@ -80,9 +80,9 @@ The number of wrong answers, all by itself, captured about 90% of what the full 
 
 That wasn't where we expected to end up.
 
-Here's the strange part. Once the model sees both right answers and don't-knows, it treats them almost the same. Both point away from accepting the proposition at nearly the same rate. What really separates the people who said yes is how many questions they answered wrongly.
+Here's the strange part. Knowing how many questions someone got wrong told the model almost as much as knowing the full split between right answers and don't-knows. For predicting this one answer, a right answer and a "don't know" carried similar information. The count that mattered most was the wrong answers.
 
-So, for this particular judgment, "don't know" behaved much more like a right answer than a wrong one.
+So, in this model and for this one judgment, "don't know" lined up much more with right answers than with wrong ones. That is a statement about prediction, not a claim that the two responses mean the same thing.
 
 That doesn't mean "don't know" deserves credit as knowledge. A knowledge score is meant to count what people demonstrably know, and it still does that. But for this judgment, a score that only counts right answers throws away useful information: whether the rest were wrong, or "don't know."
 
