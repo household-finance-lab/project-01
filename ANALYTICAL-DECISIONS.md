@@ -149,6 +149,22 @@ Ethnicity is included as an adjustment, not interpreted as a substantive finding
 
 The AME is an association, not a causal effect.
 
+**What the AME is, precisely.** `n_dk` enters the model as a continuous term, and `margins, dydx(n_dk)` returns the average derivative of P(G43 = Yes) with respect to the DK count, holding `n_correct` fixed. Because the three tallies sum to 11, that is the instantaneous rate of trading an incorrect response for a DK. The plain-language phrase "each additional 'don't know' in place of a wrong answer" approximates this derivative; it is not the average finite change from one answer to the next. Section 12a reports that discrete-substitution estimate.
+
+## 12a. The discrete one-answer substitution
+
+**Decision:** Estimate the literal swap described in plain language, alongside the average derivative, after external review noted that the two are different quantities.
+
+**Method (`code/06_discrete_substitution.py`):** from the primary weighted multinomial logit, among respondents with at least one incorrect answer (n = 2,539), the weighted average of P(Yes | C, D + 1, X) − P(Yes | C, D, X), with a delta-method SE. The script refits the primary model in Python and halts unless it reproduces Stata's −0.0467.
+
+| Estimand | N | Estimate | 95% CI |
+|---|---:|---:|---|
+| Average derivative, full sample (primary AME) | 2,796 | −.0467 | [−.0592, −.0342] |
+| Average derivative, feasible subsample | 2,539 | −.0469 | [−.0596, −.0342] |
+| Discrete swap: one incorrect → one DK, feasible subsample | 2,539 | −.0470 | [−.0595, −.0344] |
+
+**Interpretation:** the derivative and the discrete swap agree to within .0003, and restricting to the feasible subsample moves the estimate by .0002. The plain-language phrase "each additional 'don't know' in place of a wrong answer … about 4.7 percentage points" is therefore an accurate description of the discrete substitution as well as the derivative. The full-sample AME remains the primary quantity (Section 9a).
+
 ## 13. Add self-assessed knowledge as a robustness adjustment, not as a mediator claim
 
 **Decision:** Add `g2_scale` as an additional adjustment in a secondary specification.
@@ -271,7 +287,7 @@ This is suggestive evidence of heterogeneity rather than a falsification of a si
 
 The audit identified two items answered below chance among attempters — G21 (−3.7 points) and G12 (−6.3). Error concentration on particular distractors was treated as a separate diagnostic rather than equated with below-chance performance; the two properties coincide in only one item.
 
-**Language boundary:** below-chance accuracy among attempters establishes that attempts on those items carry no positive information about knowledge. It does not establish that respondents are guessing randomly or that any distractor is definitively a misconception. Where errors concentrate on one distractor, the defensible phrasing is "consistent with systematic misunderstanding rather than uniform random responding."
+**Language boundary:** among respondents who attempted these items, weighted accuracy was below the uniform-random-choice benchmark implied by the number of answer options. This warrants investigation of distractor selection, wording, and item functioning; it does not by itself establish the item's relationship with latent knowledge or how well it discriminates between respondents. Nor does it establish that respondents are guessing randomly or that any distractor is definitively a misconception. Where errors concentrate on one distractor, the defensible phrasing is "consistent with systematic misunderstanding rather than uniform random responding."
 
 This item audit became important for designing a future experiment, but it remains descriptive in Project 1.
 
@@ -309,7 +325,7 @@ Because `WGT1` does not post-stratify on gender, subgroup interpretation remains
 
 **How the problem was identified — provenance.** This was raised in **external review of a draft**, not by our own internal diagnostics. We record that because the value of this file depends on it being an accurate account of how conclusions arrived, and a correction that came from outside is more informative to a reader than one that appears to have come from inside.
 
-**Why the interpretation failed:** `n_correct` and `n_dk` correlate at −.68. Incremental fit in nested models depends on entry order, because the variable entered second receives credit for shared predictive information. Reversing the order gave +.0098 for DK entering first and +.0119 for correct entering second — four-to-one became roughly six-to-five. The original ratio was a property of the **sequence**, not of the variables.
+**Why the interpretation failed:** `n_correct` and `n_dk` correlate at −.68. The increment for each variable depends on which predictors are already in the model. Reversing the entry order changes the baseline against which its added predictive value is measured, so nested increments cannot be treated as an order-invariant allocation of importance. Reversing the order gave +.0098 for DK entering first and +.0119 for correct entering second — four-to-one became roughly six-to-five. The original ratio was a property of the **sequence**; it did not identify an intrinsic ranking of the variables. Lena Gan first reran the models in reverse order; Sara Kay then ran them in Python and built the symmetric comparison in Section 23.
 
 This was a substantive analytical correction, not a presentation change.
 
@@ -321,13 +337,13 @@ This was a substantive analytical correction, not a presentation change.
 
 | Model | Macro AUC |
 |---|---:|
-| Demographics | .621 |
-| + correct | .626 |
-| + DK | .631 |
-| + incorrect | .641 |
-| + correct + DK | .643 |
+| Demographics | .620 |
+| + correct | .624 |
+| + DK | .629 |
+| + incorrect | .639 |
+| + correct + DK | .642 |
 
-**Interpretive consequence:** `n_incorrect` alone recovers nearly all of the predictive discrimination available from the two-dimensional composition; the extra dimension adds under .002 macro AUC, favoring the fuller model in only 33 of 50 folds. In the full model, correct and DK receive nearly identical weights (−.294 and −.306 standardized), which is why the one-dimensional restriction costs so little.
+**Interpretive consequence:** `n_incorrect` alone captures most of the incremental discrimination available from the two-dimensional composition: about 89.8% of the full model's macro-AUC improvement over demographics (see `docs/REPRODUCTION-STATUS.md`). The full composition improved macro AUC by approximately .0022 beyond the incorrect-count model, favoring the fuller model in 34 of 50 folds. Overall discrimination remains modest; the full model's gain over demographics is about .022 macro AUC.
 
 This replaced the earlier "DK adds four times as much" story.
 
@@ -339,7 +355,7 @@ This replaced the earlier "DK adds four times as much" story.
 
 **Python question:** which compact summary of the quiz responses best predicts held-out G43 responses?
 
-The Stata analysis indicates that DK and incorrect responses are not behaviorally equivalent conditional on the number correct. The symmetric Python analysis indicates that, for this particular prediction task, the incorrect count alone captures nearly all of the useful response-composition signal.
+The Stata analysis indicates that DK and incorrect responses are not behaviorally equivalent conditional on the number correct. The symmetric Python analysis indicates that, for this particular prediction task, the incorrect count alone captures most of the useful response-composition signal.
 
 **Decision:** Do not claim that Python "validates" a causal interpretation of the Stata result. It provides an out-of-sample predictive extension and a diagnostic that sharpened the substantive interpretation.
 
@@ -401,7 +417,7 @@ Each belongs in the record because it demonstrates what the diagnostic was for a
 
 The project supports a deliberately narrow conclusion:
 
-> Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with DK is associated with a lower probability of accepting G43. The association is stable across the examined specifications, including every defensible construction of the auxiliary non-quiz DK control. Out-of-sample prediction further shows that response composition contains information omitted by a conventional correct-count score, with the incorrect count alone capturing nearly all of the predictive signal available from the full correct/DK composition for this particular outcome.
+> Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with DK is associated with a lower probability of accepting G43. The association is stable across the examined specifications, including every defensible construction of the auxiliary non-quiz DK control. Out-of-sample prediction further shows that response composition contains information omitted by a conventional correct-count score, with the incorrect count alone capturing most of the predictive signal available from the full correct/DK composition for this particular outcome.
 
 It does **not** establish why respondents select DK, that DK is inherently beneficial, or that changing DK behavior would causally improve judgment.
 

@@ -84,9 +84,10 @@ tabulate sex agecat [aw=wgt1], row nofreq
 *
 * LANGUAGE CAUTION, and it is a real one. "Below chance among attempts" does not
 * establish that respondents are guessing randomly, nor that any distractor is
-* definitively a misconception. It establishes that attempts on those two items
-* carry no positive information about knowledge — a property of the items. That
-* is a legitimate and undocumented item-level finding for this instrument, and it
+* definitively a misconception. Weighted accuracy among attempters falls below the
+* uniform-random-choice benchmark, which warrants investigation of distractors,
+* wording, and item functioning; it does not by itself establish the items'
+* relationship with latent knowledge. That is a legitimate and undocumented item-level finding for this instrument, and it
 * stays a secondary methodological note. It does not overtake the DK/G43
 * question that Project 1 exists to ask.
 
@@ -487,7 +488,7 @@ file write dec "BLOCK C" _n ///
   "C9 Final results table reports AMEs of quiz DK on P(G43=Yes) across specifications." _n _n
 
 file write dec ///
-  "OPEN ITEM: reconcile the 30-item non-quiz DK index against the earlier 26-item version before final manuscript reporting." _n
+  "RESOLVED: the earlier 26-item non-quiz DK list could not be reconstructed; it was documented as superseded, and the measure was rebuilt from a stated rule (ANALYTICAL-DECISIONS.md, Sections 14 and 16; docs/nonquiz-dk-sensitivity-interpretation.md)." _n
 
 file close dec
 

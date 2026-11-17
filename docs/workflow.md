@@ -40,7 +40,7 @@ flowchart TD
     F --> K["<b>Inferential result</b><br/>At a fixed number correct,<br/>substituting DK for a wrong answer is<br/><i>associated with</i> a lower probability<br/>of accepting G43"]
     I --> L["Out-of-sample evidence"]
     J --> L
-    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>nearly all discrimination available from<br/>the full correct/DK composition"]
+    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>most of the discrimination added by<br/>the full correct/DK composition"]
     H --> N["<b>Sensitivity result</b><br/>The P(Yes) association is stable across<br/>every non-quiz DK construction<br/>(30-item, 69-item, battery-balanced)"]
 
     K --> O["Joint interpretation"]

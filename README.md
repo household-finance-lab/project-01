@@ -4,7 +4,7 @@
 
 Wrong answer: zero. Don't know: zero. Same score — but are they telling us the same thing?
 
-Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return (95% CI: 3.4 to 5.9; 2,796 respondents).
+Among investors who answered the same number of knowledge questions correctly, each additional "don't know" in place of a wrong answer was associated with about a **4.7 percentage-point lower probability** of accepting an investment promising a guaranteed, risk-free 25% annual return (95% CI: 3.4 to 5.9; 2,796 respondents). Estimated directly as a one-answer swap among respondents with at least one wrong answer, the figure is the same: 4.7 points (95% CI: 3.4 to 6.0).
 
 **What it does not show:** why respondents select "don't know," that "don't know" is inherently beneficial, or that changing how people answer would improve their judgment. Nobody was assigned to say "I don't know."
 
@@ -16,13 +16,13 @@ Among investors who answered the same number of knowledge questions correctly, e
 
 ## Methodological lesson
 
-**Check what a score throws away.** A knowledge score counts correct answers, so a wrong answer and a "don't know" both count as zero. Here they were not interchangeable: they were associated with different judgments, and out of sample the wrong-answer count alone captured nearly all the predictive information in the full correct/don't-know composition. Before collapsing response categories into one score, check whether the categories carry different information.
+**Check what a score throws away.** A knowledge score counts correct answers, so a wrong answer and a "don't know" both count as zero. Here they were not interchangeable: they were associated with different judgments, and out of sample the wrong-answer count alone captured most (about 90%) of what the full correct/don't-know composition added to prediction. Before collapsing response categories into one score, check whether the categories carry different information.
 
 ## What this study supports
 
 Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with a "don't know" is associated with a lower probability of accepting the implausible proposition. The association remained across the inferential specifications examined and across every defensible construction of the auxiliary non-quiz DK control.
 
-The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured nearly all the discrimination available from the full correct/DK response composition. For this judgment, conventional scoring therefore discards information when it gives a wrong answer and "don't know" the same zero.
+The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured most (about 90%) of the improvement in discrimination that the full correct/DK response composition added over demographics, though overall discrimination remained modest. For this judgment, a correct-answer total alone discards useful information about whether the remaining responses were wrong or "don't know." That does not mean "don't know" should receive credit as demonstrated knowledge.
 
 ## What changed along the way
 
@@ -85,7 +85,7 @@ flowchart TD
     F --> K["<b>Inferential result</b><br/>At a fixed number correct,<br/>substituting DK for a wrong answer is<br/><i>associated with</i> a lower probability<br/>of accepting G43"]
     I --> L["Out-of-sample evidence"]
     J --> L
-    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>nearly all discrimination available from<br/>the full correct/DK composition"]
+    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>most of the discrimination added by<br/>the full correct/DK composition"]
     H --> N["<b>Sensitivity result</b><br/>The P(Yes) association is stable across<br/>every non-quiz DK construction<br/>(30-item, 69-item, battery-balanced)"]
 
     K --> O["Joint interpretation"]
@@ -132,6 +132,7 @@ do code/02_analyze.do                        # descriptives, item audit, models,
 python code/03_nested_prediction.py          # nested out-of-sample comparison
 python code/04_symmetric_comparison.py       # symmetric response-composition diagnostic
 python code/05_nonquiz_dk_sensitivity.py     # measurement sensitivity of the auxiliary control
+python code/06_discrete_substitution.py      # literal one-answer swap vs. the average derivative
 ```
 
 **Runtime.** The Stata scripts run in under two minutes. The Python scripts take roughly five, most of it in repeated cross-validation.

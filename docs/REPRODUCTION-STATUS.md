@@ -1,8 +1,12 @@
 # Reproduction status
 
-**Verified 25 August 2026.** The pipeline has been run end to end from this
-repository. Every committed result table is now the direct output of the
-committed code. One table was replaced; the substantive findings are unchanged.
+**Verified 25 August 2026.** This run covers the Python layer: every Python
+script then in the repository was rerun from the analytic CSV that `01_build.do` exports, and every
+committed Python result table is now the direct output of the committed code.
+The Stata build and analysis were not independently rerun as part of this
+verification; the Stata primary estimate is matched by the Python
+re-estimation below. One table was replaced; the substantive findings are
+unchanged.
 
 This file exists because the lab's stated practice is to keep the receipts and
 to report what was actually done.
@@ -96,8 +100,8 @@ model A:
 | Macro AUC | 91.6% | 89.8% |
 | Accuracy | 91.4% | 97.8% |
 
-Both versions support the published claim that the wrong-answer count alone
-captures nearly all of the available discrimination. The correction moved third
+Both versions support the claim that the wrong-answer count alone captures
+most of the available discrimination. The correction moved third
 and fourth decimal places and left every ordering, sign, and conclusion intact.
 
 The stale table was replaced rather than kept, because a repository whose
