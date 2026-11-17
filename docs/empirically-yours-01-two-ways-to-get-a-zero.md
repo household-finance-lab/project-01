@@ -40,7 +40,7 @@ It mattered.
 
 For people with the same number of correct answers, each additional "don't know" in place of a wrong answer came with about a **4.7 percentage-point lower probability** of accepting the implausible proposition.
 
-Same number right. Different way of getting there. Different judgment afterward.
+Same number right. Different mix of wrong answers and don't-knows. Different answers to the investment offer.
 
 Then we tried to make the result disappear.
 
@@ -56,27 +56,27 @@ We had built the models in layers — demographics first, then the number of rig
 
 I liked that result. I had already written the sentence.
 
-There was one problem. It depended on which variable went in first.
+There was one problem, and I wasn't the one who found it. A reviewer who read a draft asked whether the result depended on which variable went in first. Sara reran the models in reverse order. Four-to-one became six-to-five.
 
-Right answers and don't-knows move together — knowing one tells you a lot about the other. So whichever goes in second gets credit for everything they share. We ran it backwards. Four-to-one became six-to-five.
+Right answers and don't-knows move together — knowing one tells you a lot about the other. So how much each one seems to add depends on what the model already knows when it goes in. Change the order, and you change what each one is measured against.
 
 My favorite sentence was a fact about the order we typed things in.
 
-So we stopped asking which variable added more when it went second, and gave each one the same chance.
+So Sara stopped asking which variable added more when it went second, and built a comparison that gave each one the same chance.
 
 Wrong answers won.
 
 | What the model knows | Macro AUC |
 |---|---|
-| Demographics only | .621 |
-| \+ how many right | .626 |
-| \+ how many don't-knows | .631 |
-| **\+ how many wrong** | **.641** |
-| \+ right and don't-knows together | .643 |
+| Demographics only | .620 |
+| \+ how many right | .624 |
+| \+ how many don't-knows | .629 |
+| **\+ how many wrong** | **.639** |
+| \+ right and don't-knows together | .642 |
 
 Higher is better. A score of .50 would be no better than chance.
 
-The number of wrong answers, all by itself, recovered almost everything we could predict from the full right/wrong/don't-know combination.
+The number of wrong answers, all by itself, captured about 90% of what the full right/wrong/don't-know combination added over demographics. None of these models predicts especially well, so the differences are small.
 
 That wasn't where we expected to end up.
 
@@ -84,7 +84,7 @@ Here's the strange part. Once the model sees both right answers and don't-knows,
 
 So, for this particular judgment, "don't know" behaved much more like a right answer than a wrong one.
 
-Which is awkward, because at least for this judgment, conventional scoring appears to be putting "don't know" in the wrong bin.
+That doesn't mean "don't know" deserves credit as knowledge. A knowledge score is meant to count what people demonstrably know, and it still does that. But for this judgment, a score that only counts right answers throws away useful information: whether the rest were wrong, or "don't know."
 
 ## What we don't know
 
@@ -122,4 +122,4 @@ A wrong answer and "I don't know" may both earn zero points.
 
 **Want the machinery?** The data construction, validation checks, Stata models, Python cross-validation, robustness tests, and our analytical-decisions log are all in the GitHub repository, including the things that didn't work.
 
-*Exploratory analysis of observational data. Not peer reviewed. Across specifications, the estimated association ranged from 4.2 to 4.7 percentage points. Predictive results use repeated cross-validation on 2,783 respondents. Full methods, code, and results are in the repository.*
+*Exploratory analysis of observational data. Not peer reviewed. The association was approximately 4.0 to 4.7 percentage points across the primary and auxiliary-measure sensitivity specifications; a separate Yes-versus-No analysis, excluding outcome "don't know" responses, produced a smaller association of approximately 2.9 points. Predictive results use repeated cross-validation on 2,783 respondents. Full methods, code, and results are in the repository.*

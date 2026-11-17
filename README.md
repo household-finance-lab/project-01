@@ -16,13 +16,13 @@ Among investors who answered the same number of knowledge questions correctly, e
 
 ## Methodological lesson
 
-**Check what a score throws away.** A knowledge score counts correct answers, so a wrong answer and a "don't know" both count as zero. Here they were not interchangeable: they were associated with different judgments, and out of sample the wrong-answer count alone captured nearly all the predictive information in the full correct/don't-know composition. Before collapsing response categories into one score, check whether the categories carry different information.
+**Check what a score throws away.** A knowledge score counts correct answers, so a wrong answer and a "don't know" both count as zero. Here they were not interchangeable: they were associated with different judgments, and out of sample the wrong-answer count alone captured most (about 90%) of what the full correct/don't-know composition added to prediction. Before collapsing response categories into one score, check whether the categories carry different information.
 
 ## What this study supports
 
 Among Investor Survey respondents with the same number of correct quiz answers, replacing an incorrect response with a "don't know" is associated with a lower probability of accepting the implausible proposition. The association remained across the inferential specifications examined and across every defensible construction of the auxiliary non-quiz DK control.
 
-The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured nearly all the discrimination available from the full correct/DK response composition. For this judgment, conventional scoring therefore discards information when it gives a wrong answer and "don't know" the same zero.
+The predictive analysis adds a different result. Out of sample, the number of wrong answers alone captured most (about 90%) of the improvement in discrimination that the full correct/DK response composition added over demographics, though overall discrimination remained modest. For this judgment, a correct-answer total alone discards useful information about whether the remaining responses were wrong or "don't know." That does not mean "don't know" should receive credit as demonstrated knowledge.
 
 ## What changed along the way
 
@@ -85,7 +85,7 @@ flowchart TD
     F --> K["<b>Inferential result</b><br/>At a fixed number correct,<br/>substituting DK for a wrong answer is<br/><i>associated with</i> a lower probability<br/>of accepting G43"]
     I --> L["Out-of-sample evidence"]
     J --> L
-    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>nearly all discrimination available from<br/>the full correct/DK composition"]
+    L --> M["<b>Predictive result</b><br/>The wrong-answer count alone captures<br/>most of the discrimination added by<br/>the full correct/DK composition"]
     H --> N["<b>Sensitivity result</b><br/>The P(Yes) association is stable across<br/>every non-quiz DK construction<br/>(30-item, 69-item, battery-balanced)"]
 
     K --> O["Joint interpretation"]
