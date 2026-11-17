@@ -153,7 +153,7 @@ The AME is an association, not a causal effect.
 
 ## 12a. The discrete one-answer substitution
 
-**Decision:** Estimate the literal swap described in plain language, alongside the average derivative, after external review noted that the two are different quantities.
+**Decision:** Estimate the literal swap described in plain language, alongside the average derivative, after Lena Gan's review of the draft noted that the two are different quantities.
 
 **Method (`code/06_discrete_substitution.py`):** from the primary weighted multinomial logit, among respondents with at least one incorrect answer (n = 2,539), the weighted average of P(Yes | C, D + 1, X) − P(Yes | C, D, X), with a delta-method SE. The script refits the primary model in Python and halts unless it reproduces Stata's −0.0467.
 
@@ -323,7 +323,7 @@ Because `WGT1` does not post-stratify on gender, subgroup interpretation remains
 
 **Decision:** Do not retain that interpretation.
 
-**How the problem was identified — provenance.** This was raised in **external review of a draft**, not by our own internal diagnostics. We record that because the value of this file depends on it being an accurate account of how conclusions arrived, and a correction that came from outside is more informative to a reader than one that appears to have come from inside.
+**How the problem was identified — provenance.** This was raised when Lena Gan reviewed a draft, not by the analysis code's own diagnostics. We record that because the value of this file depends on it being an accurate account of how conclusions arrived.
 
 **Why the interpretation failed:** `n_correct` and `n_dk` correlate at −.68. The increment for each variable depends on which predictors are already in the model. Reversing the entry order changes the baseline against which its added predictive value is measured, so nested increments cannot be treated as an order-invariant allocation of importance. Reversing the order gave +.0098 for DK entering first and +.0119 for correct entering second — four-to-one became roughly six-to-five. The original ratio was a property of the **sequence**; it did not identify an intrinsic ranking of the variables. Lena Gan first reran the models in reverse order; Sara Kay then ran them in Python. The symmetric comparison in Section 23 followed.
 
