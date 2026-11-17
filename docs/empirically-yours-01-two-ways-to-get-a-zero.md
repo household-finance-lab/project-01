@@ -56,13 +56,13 @@ We had built the models in layers — demographics first, then the number of rig
 
 I liked that result. I had already written the sentence.
 
-There was one problem, and I wasn't the one who found it. A reviewer who read a draft asked whether the result depended on which variable went in first. I reran the models in reverse order, and then Sara ran them in Python. Four-to-one became six-to-five.
+There was one problem. Rereading the draft, I asked whether the result depended on which variable went in first. I reran the models in reverse order, and then Sara ran them in Python. Four-to-one became six-to-five.
 
 Right answers and don't-knows move together — knowing one tells you a lot about the other. So how much each one seems to add depends on what the model already knows when it goes in. Change the order, and you change what each one is measured against.
 
 My favorite sentence was a fact about the order we typed things in.
 
-So we stopped asking which variable added more when it went second, and Sara built a comparison that gave each one the same chance.
+So we stopped asking which variable added more when it went second, and built a comparison that gave each one the same chance.
 
 Wrong answers won.
 
